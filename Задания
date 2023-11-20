@@ -1,0 +1,64 @@
+№1
+import asyncio
+import time
+
+async def slow_operation(a):
+    print(f'Starting slow operation with parameter: {a}')
+    await asyncio.sleep(1)  # Замените это на вашу реальную медленную операцию
+    print(f'Slow operation completed with parameter: {a}')
+
+async def fast_operation(a, b):
+    print(f'Fast operation with parameters: {a} and {b}')
+
+async def main():
+    task1 = asyncio.create_task(slow_operation(3))
+    task2 = asyncio.create_task(fast_operation(1, 2))
+    await asyncio.gather(task1, task2)
+
+asyncio.run(main())
+
+
+
+
+
+
+№2
+import asyncio
+import random
+
+async def answer_phone_calls():
+    while True:
+        print("Секретарь отвечает на телефонные звонки")
+        await asyncio.sleep(random.uniform(1, 5))
+
+async def meet_visitors():
+    while True:
+        print("Секретарь принимает посетителей")
+        await asyncio.sleep(random.uniform(2, 6))
+
+async def book_flight_tickets():
+    while True:
+        print("Секретарь пытается забронировать билеты на самолет")
+        await asyncio.sleep(random.uniform(3, 7))
+
+async def manage_meeting_schedules():
+    while True:
+        print("Секретарь контролирует графики встреч")
+        await asyncio.sleep(random.uniform(1, 4))
+
+async def fill_documents():
+    while True:
+        print("Секретарь заполняет документы")
+        await asyncio.sleep(random.uniform(4, 8))
+
+async def secretary_main():
+    tasks = [
+        answer_phone_calls(),
+        meet_visitors(),
+        book_flight_tickets(),
+        manage_meeting_schedules(),
+        fill_documents()
+    ]
+    await asyncio.gather(*tasks)
+
+asyncio.run(secretary_main())
